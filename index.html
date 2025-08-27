@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ifiezibe Justin Samuel - AI & Blockchain Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --bg-accent: #1a1b3a;
+            --purple-primary: #9945ff;
+            --purple-secondary: #7c3aed;
+            --purple-accent: #a855f7;
+            --text-primary: #f0f6fc;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-primary: #30363d;
+            --border-accent: #9945ff33;
+            --success: #238636;
+            --warning: #f85149;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(153, 69, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.02) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .typing-animation {
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .greeting {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-accent), var(--purple-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 30px rgba(153, 69, 255, 0.3);
+        }
+
+        .intro {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple-primary), transparent);
+        }
+
+        .intro p {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .intro strong {
+            color: var(--purple-accent);
+            font-weight: 600;
+        }
+
+        .currently-working {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .currently-working::before {
+            content: '🔭';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        .currently-working h3 {
+            font-size: 1.1rem;
+            color: var(--purple-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .currently-working ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .currently-working li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .currently-working li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--purple-accent);
+            font-size: 0.8rem;
+        }
+
+        .tech-stack {
+            margin: 3rem 0;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .tech-stack h2 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            border-color: var(--purple-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 69, 255, 0.15);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(153, 69, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            border-color: var(--purple-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 69, 255, 0.2);
+        }
+
+        .projects {
+            margin-top: 4rem;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .projects h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-category {
+            margin-bottom: 3rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-primary), var(--purple-accent), var(--purple-secondary));
+        }
+
+        .project-category h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--purple-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple-accent), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            border-color: var(--purple-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(153, 69, 255, 0.15);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-star {
+            color: var(--warning);
+            font-size: 0.9rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link, .demo-badge {
+            color: var(--purple-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--purple-accent);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .demo-badge {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .project-link:hover, .demo-badge:hover {
+            background: var(--purple-accent);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .demo-badge:hover {
+            background: #2ea043;
+        }
+
+        .stats-section {
+            margin: 4rem 0;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 1s both;
+        }
+
+        .stats-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--purple-accent);
+        }
+
+        .achievements {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-accent);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            animation: fadeInUp 0.8s ease-out 1.2s both;
+        }
+
+        .achievements h2 {
+            font-size: 1.8rem;
+            color: var(--purple-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .achievements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements li {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .achievements li::before {
+            content: '🏆';
+            position: absolute;
+            left: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-primary);
+            color: var(--text-muted);
+            animation: fadeInUp 0.8s ease-out 1.4s both;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--purple-accent);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .name {
+                font-size: 2.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 2rem;
+            }
+
+            .intro, .project-category {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--purple-accent);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--purple-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="typing-animation">AI & Blockchain Developer • Full-Stack Engineer • DeFi Protocol Builder</div>
+            <div class="greeting">Hey there! I'm</div>
+            <h1 class="name">Ifiezibe Justin Samuel</h1>
+        </header>
+
+        <main>
+            <section class="intro">
+                <p>I'm a passionate developer specializing in <strong>AI/ML</strong>, <strong>blockchain technology</strong>, <strong>quantitative finance</strong>, and <strong>web development</strong>. I build innovative tools that bridge traditional finance, cryptocurrency markets, and cutting-edge AI applications.</p>
+                
+                <p>My work focuses on creating practical, real-world solutions that solve complex problems in <strong>fintech</strong>, <strong>DeFi</strong>, and <strong>automated trading systems</strong>.</p>
+
+                <div class="currently-working">
+                    <h3>🔭 Currently Working On</h3>
+                    <ul>
+                        <li><strong>Voice-Controlled LLM App</strong> and advanced AI trading systems</li>
+                        <li>Quantitative finance models (ARIMA, GARCH) and advanced ML architectures</li>
+                        <li>Automated trading systems and cross-chain DeFi protocols</li>
+                        <li>Tools that democratize access to financial data and AI-powered insights</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="tech-stack">
+                <h2>🛠️ Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">Python</div>
+                    <div class="tech-item">JavaScript</div>
+                    <div class="tech-item">TypeScript</div>
+                    <div class="tech-item">PHP</div>
+                    <div class="tech-item">React</div>
+                    <div class="tech-item">Node.js</div>
+                    <div class="tech-item">FastAPI</div>
+                    <div class="tech-item">Rust</div>
+                    <div class="tech-item">TensorFlow</div>
+                    <div class="tech-item">Solana</div>
+                    <div class="tech-item">Web3.js</div>
+                    <div class="tech-item">Docker</div>
+                </div>
+            </section>
+
+            <div class="social-links">
+                <a href="https://github.com/thetruesammyjay" class="social-link">
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:thetruesammyjay@gmail.com" class="social-link">
+                    <span>Email</span>
+                </a>
+                <a href="https://x.com/thatbwoysammyj" class="social-link">
+                    <span>Twitter</span>
+                </a>
+                <a href="https://t.me/sammyjayisthename" class="social-link">
+                    <span>Telegram</span>
+                </a>
+            </div>
+
+            <section class="projects">
+                <h2>🌟 Featured Projects</h2>
+                
+                <div class="project-category">
+                    <h3>🤖 AI & Machine Learning</h3>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                Voice-Controlled LLM App
+                                <span class="project-star">⭐</span>
+                            </h4>
+                            <p class="project-description">Advanced voice-controlled AI application with local LLM integration and natural language processing capabilities.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/voice-controlled-llm-app" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                Speech-to-Text App Demo
+                                <span class="project-star">⭐</span>
+                            </h4>
+                            <p class="project-description">Browser-based speech-to-text with multi-language support and real-time transcription capabilities.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/stt-app-demo" class="project-link">View Project</a>
+                                <a href="https://stt-app-demo.vercel.app/" class="demo-badge">Live Demo</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                Aloud Read App
+                            </h4>
+                            <p class="project-description">Text-to-speech application for accessibility with natural voice synthesis and multi-language support.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/aloud-read-app" class="project-link">View Project</a>
+                                <a href="https://aloud-read-app.netlify.app/" class="demo-badge">Live Demo</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">Crypto Prediction App MVP</h4>
+                            <p class="project-description">Machine learning models for cryptocurrency price prediction and comprehensive market analysis.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/crypto-prediction-app-mvp" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">AI Trading Assistant</h4>
+                            <p class="project-description">Advanced AI-powered trading assistant with market analysis capabilities and automated decision-making.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/ai-trading-assistant" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">GARCH Volatility Model</h4>
+                            <p class="project-description">Advanced volatility modeling for financial markets using GARCH models and statistical analysis.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/garch_volatility_model" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-category">
+                    <h3>🔗 Blockchain & DeFi</h3>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                MultiChain Track
+                                <span class="project-star">⭐</span>
+                            </h4>
+                            <p class="project-description">Cross-chain transaction tracking and analysis tool for comprehensive blockchain monitoring.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/multichain-track" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                ChainSight
+                                <span class="project-star">⭐</span>
+                            </h4>
+                            <p class="project-description">Advanced blockchain analytics and monitoring platform with real-time insights and data visualization.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/ChainSight" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                DEX Trending Bot
+                                <span class="project-star">⭐</span>
+                            </h4>
+                            <p class="project-description">Automated DexScreener analysis with social media integration and trend identification.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/dex-trending-bot" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                LayerZero Solana Auth
+                                <span class="project-star">⭐</span>
+                            </h4>
+                            <p class="project-description">Cross-chain authentication using LayerZero protocol for seamless multi-chain interactions.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/layerzero-solana-auth" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">Market Maker Bot</h4>
+                            <p class="project-description">Automated market making strategies for DeFi protocols with advanced liquidity management.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/market-maker-bot" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">Solana Program Inspector</h4>
+                            <p class="project-description">Rust-based tool for Solana smart contract analysis and security auditing.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/solana-program-inspector" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-category">
+                    <h3>🛠️ Productivity & Utility Tools</h3>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <h4 class="project-title">
+                                QR Code Generator
+                                <span class="project-star">⭐</span>
+                            </h4>
+                            <p class="project-description">A simple, efficient, and privacy-focused web-based QR Code Generator with modern UI.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/qr-code-generator" class="project-link">View Project</a>
+                                <a href="https://qr-code-generator-navy-seven.vercel.app/" class="demo-badge">Live Demo</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">Finance Management App</h4>
+                            <p class="project-description">Personal finance tracking and management system with comprehensive analytics and reporting.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/finance-management-app" class="project-link">View Project</a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <h4 class="project-title">Stock Master</h4>
+                            <p class="project-description">A powerful, user-friendly inventory management system with real-time tracking and automated alerts.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/StockMaster" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="achievements">
+                <h2>🏆 Recent Achievements</h2>
+                <ul>
+                    <li>Successfully deployed multiple production-ready DeFi tools and blockchain analytics platforms</li>
+                    <li>Built comprehensive quantitative analysis frameworks using ARIMA and GARCH models</li>
+                    <li>Developed cross-chain tracking solutions with LayerZero integration</li>
+                    <li>Created AI-powered voice interfaces for seamless user interaction</li>
+                    <li>Maintained active development across 35+ repositories with diverse technology stack</li>
+                    <li>Implemented advanced speech-to-text and text-to-speech applications</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-quote">
+                "Building the future of DeFi, AI, and Web Development, one commit at a time"
+            </div>
+            <p>&copy; 2025 Ifiezibe Justin Samuel. Innovating at the intersection of AI and blockchain.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add smooth scroll and enhanced interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for any internal links
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Enhanced project card interactions
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Tech stack item interactions
+            const techItems = document.querySelectorAll('.tech-item');
+            techItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.style.animation = 'pulse 0.6s ease-in-out';
+                    setTimeout(() => {
+                        item.style.animation = '';
+                    }, 600);
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for scroll animations
+            document.querySelectorAll('.project-card, .tech-item').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-nav');
+                }
+            });
+
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-nav');
+            });
+
+            // Enhanced social link interactions
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    link.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                
+                link.addEventListener('mouseleave', () => {
+                    link.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Project link analytics
+            const projectLinks = document.querySelectorAll('.project-link, .demo-badge');
+            projectLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log('Project accessed:', this.textContent, this.href);
+                });
+            });
+
+            // Dynamic background effect
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX / window.innerWidth;
+                mouseY = e.clientY / window.innerHeight;
+                
+                const bg = document.querySelector('body::before');
+                if (bg) {
+                    document.documentElement.style.setProperty('--mouse-x', mouseX);
+                    document.documentElement.style.setProperty('--mouse-y', mouseY);
+                }
+            });
+
+            // Typing animation for header
+            const typingText = document.querySelector('.typing-animation');
+            if (typingText) {
+                const text = typingText.textContent;
+                typingText.textContent = '';
+                let i = 0;
+                
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        typingText.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                
+                setTimeout(typeWriter, 500);
+            }
+
+            // Add sparkle effect to starred projects
+            const starredProjects = document.querySelectorAll('.project-star');
+            starredProjects.forEach(star => {
+                star.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    createSparkle(e.target);
+                });
+            });
+
+            function createSparkle(element) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'absolute';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.fontSize = '1.5rem';
+                sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                
+                const rect = element.getBoundingClientRect();
+                sparkle.style.left = rect.left + 'px';
+                sparkle.style.top = rect.top + 'px';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    document.body.removeChild(sparkle);
+                }, 1000);
+            }
+        });
+
+        // Add sparkle animation
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkle {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.2) rotate(180deg);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            
+            .animate-in {
+                animation: slideInUp 0.6s ease-out forwards;
+            }
+            
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            /* Enhanced focus styles */
+            .keyboard-nav a:focus,
+            .keyboard-nav button:focus {
+                outline: 2px solid var(--purple-accent);
+                outline-offset: 2px;
+                border-radius: 4px;
+            }
+            
+            /* Hover effects for better interaction */
+            .tech-item:active {
+                transform: translateY(-2px) scale(0.98);
+            }
+            
+            .project-link:active,
+            .demo-badge:active {
+                transform: scale(0.95);
+            }
+            
+            /* Custom selection colors */
+            ::selection {
+                background: var(--purple-accent);
+                color: var(--text-primary);
+            }
+            
+            ::-moz-selection {
+                background: var(--purple-accent);
+                color: var(--text-primary);
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+    </script>
+</body>
+</html>
