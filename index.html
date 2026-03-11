@@ -3,1281 +3,1600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ifiezibe Justin Samuel - AI & Blockchain Developer</title>
+    <title>Ifiezibe Justin Samuel — AI, Blockchain & Full-Stack Engineer</title>
+    <meta name="description" content="Software engineer specializing in AI/ML, blockchain infrastructure, quantitative finance, and full-stack development.">
 
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --navy-primary: #01015C;
-            --orange-primary: #ffa200;
-            --white: #ffffff;
-            --bg-primary: #0a0a2e;
-            --bg-secondary: #16213e;
-            --bg-tertiary: #1a1a4a;
-            --text-primary: #ffffff;
-            --text-secondary: #e0e0e0;
-            --text-muted: #b0b0b0;
-            --border-primary: #2a2a5a;
-            --border-accent: #ffa20033;
-            --success: #00d084;
+            --bg-base: #070a13;
+            --bg-surface: #0e1424;
+            --bg-card: rgba(14, 20, 36, 0.4);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-em: rgba(16, 185, 129, 0.35);
+            --border-red: rgba(239, 68, 68, 0.35);
+            --emerald: #10b981;
+            --emerald-dark: #059669;
+            --emerald-light: #34d399;
+            --blue: #3b82f6;
+            --red: #ef4444;
+            --red-dark: #dc2626;
+            --white: #f8fafc;
+            --gray: #94a3b8;
+            --muted: #64748b;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', sans-serif;
+            font-family: var(--font-main);
+            background: var(--bg-base);
+            color: var(--white);
             line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-primary);
-            min-height: 100vh;
-            position: relative;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        body::before {
-            content: '';
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+        /* Grid overlay */
+        .grid-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 162, 0, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(1, 1, 92, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 162, 0, 0.03) 0%, transparent 50%);
-            z-index: -1;
-            animation: backgroundShift 20s ease-in-out infinite;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(2deg); }
-        }
-
-        .floating-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, #000 40%, transparent 100%);
+            mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, #000 40%, transparent 100%);
             pointer-events: none;
             z-index: 0;
-            overflow: hidden;
         }
 
-        .shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            background: var(--orange-primary);
+        /* Glow blobs */
+        .blob {
+            position: fixed;
             border-radius: 50%;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+        .blob-1 {
+            width: 600px; height: 600px;
+            background: rgba(16, 185, 129, 0.08); /* Emerald glow */
+            top: -200px; left: 50%; transform: translateX(-50%);
+        }
+        .blob-2 {
+            width: 400px; height: 400px;
+            background: rgba(239, 68, 68, 0.06); /* Red glow */
+            bottom: 20%; left: -100px;
         }
 
-        .shape:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            background: var(--navy-primary);
-            border-radius: 50%;
-            top: 60%;
-            right: 15%;
-            animation-delay: 5s;
+        /* Scroll progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--emerald), var(--red));
+            z-index: 9999;
+            transition: width 0.1s ease;
+            width: 0%;
         }
 
-        .shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            background: var(--orange-primary);
-            border-radius: 20px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-30px) rotate(180deg);
-            }
-        }
-
+        /* Layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 0 1.5rem;
             position: relative;
             z-index: 1;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 4rem;
-            opacity: 0;
-            transform: translateY(30px);
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            position: relative;
+            z-index: 1;
+            margin: 2rem 0;
         }
 
-        .header.visible {
-            animation: fadeInUp 0.8s ease-out forwards;
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: calc(100% - 3rem);
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-
-        .typing-animation {
-            background: linear-gradient(135deg, var(--orange-primary), #ffb733);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-            font-weight: 500;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid var(--orange-primary);
-            animation: typing 4s steps(60) 1s forwards, blink 0.75s step-end infinite;
-            max-width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        .greeting {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .name {
-            font-size: clamp(2rem, 6vw, 3.5rem);
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--navy-primary), var(--orange-primary), var(--navy-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 30px rgba(255, 162, 0, 0.3);
+            letter-spacing: -1px;
+            color: white;
+            text-decoration: none;
+        }
+        .nav-center-pill {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.5rem;
+            display: flex;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.25rem;
+        }
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { 
+            color: var(--white); 
+            background: rgba(255,255,255,0.05);
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .icon-btn {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid var(--border);
+            color: var(--gray);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(16px);
+        }
+        .icon-btn:hover {
+            color: var(--white);
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+        }
+        .btn-register {
+            background: var(--red);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+        }
+        .btn-register:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
         }
 
-        .scroll-indicator {
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 2rem;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator span {
-            color: var(--orange-primary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .scroll-arrow {
-            width: 24px;
-            height: 24px;
-            border-left: 2px solid var(--orange-primary);
-            border-bottom: 2px solid var(--orange-primary);
-            transform: rotate(-45deg);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(10px);
-            }
-            60% {
-                transform: translateY(5px);
-            }
-        }
-
-        .section {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .intro {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-primary);
-            border-radius: 16px;
-            padding: clamp(1.5rem, 4vw, 2.5rem);
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .intro::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
-        }
-
-        .intro p {
-            margin-bottom: 1.2rem;
-            color: var(--text-secondary);
-            font-size: clamp(0.95rem, 2vw, 1.1rem);
-        }
-
-        .intro strong {
-            color: var(--orange-primary);
-            font-weight: 600;
-        }
-
-        .currently-working {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-accent);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .currently-working:hover {
-            transform: translateX(5px);
-        }
-
-        .currently-working::before {
-            content: '🔭';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 3rem;
-            opacity: 0.1;
-        }
-
-        .currently-working h3 {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            color: var(--orange-primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .currently-working ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .currently-working li {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
-        .currently-working li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: var(--orange-primary);
-            font-size: 0.8rem;
-        }
-
-        .tech-stack {
-            margin: 3rem 0;
-        }
-
-        .tech-stack h2 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
+            justify-content: center;
             text-align: center;
+            padding: 8rem 1.25rem 5rem;
+            position: relative;
         }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-primary);
-            border-radius: 8px;
-            padding: 0.75rem;
-            text-align: center;
-            font-size: clamp(0.8rem, 2vw, 0.85rem);
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .tech-item:hover {
-            border-color: var(--orange-primary);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 162, 0, 0.15);
-        }
-
-        .social-links {
+        .hero-badge-wrap {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
         }
-
-        .social-link {
+        .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--navy-primary);
-            border: 1px solid var(--orange-primary);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            font-size: clamp(0.85rem, 2vw, 1rem);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            gap: 0.6rem;
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 0.45rem 1.1rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            color: var(--emerald-light);
+            backdrop-filter: blur(8px);
+            letter-spacing: 0.02em;
         }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 162, 0, 0.1), transparent);
-            transition: left 0.5s ease;
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--emerald);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 6px var(--emerald);
+            animation: pulse-dot 2s ease-in-out infinite;
         }
-
-        .social-link:hover::before {
-            left: 100%;
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.75); }
         }
-
-        .social-link:hover {
-            background: var(--orange-primary);
-            border-color: var(--orange-primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 162, 0, 0.3);
+        .badge-icon {
+            color: var(--emerald-light);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
         }
-
-        .projects {
-            margin-top: 4rem;
+        .badge-divider { color: rgba(255,255,255,0.15); }
+        /* Hero eyebrow */
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.25rem;
         }
-
-        .projects h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
+        .hero-title {
+            font-size: clamp(3rem, 8.5vw, 6rem);
             font-weight: 800;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--navy-primary), var(--orange-primary));
+            letter-spacing: -0.05em;
+            line-height: 1.0;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        .hero-title .line-name {
+            display: block;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--gray);
+            margin-bottom: 0.35rem;
+        }
+        .hero-title .line-role {
+            display: block;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--emerald-light), var(--emerald-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .project-category {
-            margin-bottom: 3rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-primary);
-            border-radius: 16px;
-            padding: clamp(1.5rem, 3vw, 2rem);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--navy-primary), var(--orange-primary), var(--navy-primary));
-        }
-
-        .project-category h3 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--orange-primary);
-            display: flex;
+        .hero-typing-wrap {
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-primary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        .project-card:hover {
-            border-color: var(--orange-primary);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(255, 162, 0, 0.2);
-        }
-
-        .project-title {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            gap: 0;
+            font-size: clamp(1.05rem, 2.5vw, 1.4rem);
             font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            min-height: 2rem;
+            font-family: var(--font-mono);
+        }
+        .hero-typing-prefix {
+            color: var(--emerald);
+            margin-right: 0.4rem;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: var(--emerald);
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .hero-desc {
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+            color: var(--gray);
+            max-width: 560px;
+            margin: 0 auto 2.75rem;
+            line-height: 1.75;
+        }
+        .hero-stats {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 2.5rem;
             flex-wrap: wrap;
+            margin-bottom: 2.75rem;
         }
-
-        .project-star {
-            color: var(--orange-primary);
-            font-size: 0.9rem;
+        .hero-stat {
+            text-align: center;
         }
-
-        .project-description {
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 1rem;
-            font-size: clamp(0.9rem, 2vw, 0.95rem);
+        .hero-stat-num {
+            display: block;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.03em;
         }
-
-        .project-links {
+        .hero-stat-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.15rem;
+        }
+        .hero-actions {
             display: flex;
+            justify-content: center;
             gap: 1rem;
             flex-wrap: wrap;
         }
 
-        .project-link, .demo-badge {
-            color: var(--orange-primary);
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
             text-decoration: none;
-            font-size: clamp(0.85rem, 2vw, 0.9rem);
-            padding: 0.25rem 0.75rem;
-            border: 1px solid var(--orange-primary);
-            border-radius: 20px;
             transition: all 0.3s ease;
-            font-weight: 500;
+            cursor: pointer;
+            border: none;
         }
-
-        .demo-badge {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
+        .btn-emerald {
+            background: var(--emerald);
+            color: #000;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
         }
-
-        .project-link:hover {
-            background: var(--orange-primary);
-            color: var(--navy-primary);
-            transform: scale(1.05);
+        .btn-emerald:hover {
+            background: var(--emerald-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(16, 185, 129, 0.4);
         }
-
-        .demo-badge:hover {
-            background: #00b96f;
-            transform: scale(1.05);
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.15);
         }
-
-        .achievements {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-accent);
-            border-radius: 16px;
-            padding: clamp(1.5rem, 3vw, 2rem);
-            margin: 3rem 0;
+        .btn-outline:hover {
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
         }
-
-        .achievements h2 {
-            font-size: clamp(1.5rem, 3vw, 1.8rem);
-            color: var(--orange-primary);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .achievements ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .achievements li {
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
-        .achievements li::before {
-            content: '🏆';
-            position: absolute;
-            left: 0;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding: 2rem 1rem;
-            border-top: 1px solid var(--border-primary);
-            color: var(--text-muted);
-        }
-
-        .footer-quote {
-            font-style: italic;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            color: var(--orange-primary);
+        
+        /* Section Large Titles */
+        .huge-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
             margin-bottom: 1rem;
+            color: var(--white);
+        }
+        .huge-title span { color: var(--gray); }
+        .huge-red-text {
+            color: var(--red);
         }
 
-        .footer-copyright {
-            font-size: clamp(0.85rem, 2vw, 0.9rem);
-            color: var(--text-secondary);
-            margin-top: 1rem;
+        /* ===== SECTIONS ===== */
+        section { padding: 6rem 0; }
+
+        .section-tag {
+            display: inline-flex;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 1.5rem;
         }
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .section-desc {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 4rem;
+            line-height: 1.7;
+        }
+        .center-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== GLASS CARD ===== */
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== ABOUT ===== */
+        .about-wrap {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .about-text strong { color: var(--white); font-weight: 600; }
+
+        .building-card {
+            background: rgba(16, 185, 129, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .building-card h3 {
+            color: var(--emerald-light);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+        .building-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .building-list li {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .building-list li strong { color: #fff; font-weight: 600; display: block; margin-bottom: 0.2rem; }
+
+        /* ===== TECH STACK ===== */
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .tech-category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.75rem;
+        }
+        .tech-category-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            opacity: 0.9;
+        }
+        .tech-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .tech-pill {
+            font-size: 0.85rem;
+            padding: 0.35rem 0.8rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 999px;
+            color: var(--gray);
+            transition: all 0.2s ease;
+        }
+        .tech-pill:hover {
+            color: var(--white);
+            border-color: var(--emerald-light);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        /* ===== PROJECTS ===== */
+        .projects-bg { background: rgba(5, 8, 16, 0.8); }
+        .category-header { margin-bottom: 1.5rem; }
+        .category-title { font-size: 1.5rem; font-weight: 700; color: var(--white); }
+        .category-count {
+            display: inline-block;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 999px;
+            color: var(--gray);
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        .project-section-block { margin-bottom: 4rem; }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(30, 41, 59, 0.3);
+            transform: translateY(-4px);
+        }
+        .project-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .project-star { color: var(--emerald); font-size: 0.9rem; }
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1.25rem;
+        }
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        .project-stack {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-family: var(--font-mono);
+        }
+        .project-links { display: flex; gap: 0.5rem; }
+        .link-btn {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 0.35rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            color: var(--white);
+            background: rgba(255,255,255,0.02);
+        }
+        .link-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        .link-live { color: var(--emerald-light); border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05); }
+        .link-live:hover { background: rgba(16, 185, 129, 0.15); border-color: var(--emerald); }
+
+        /* ===== CONTACT ===== */
+        .contact-section { text-align: center; }
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--white);
+        }
+        .social-btn:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        footer .quote {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        footer p { color: var(--muted); font-size: 0.85rem; }
+
+        /* ===== ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scroll-animate.visible { opacity: 1; transform: translateY(0); }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        .anim { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        .d1 { animation-delay: 0.1s; }
+        .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.3s; }
+        .d4 { animation-delay: 0.4s; }
 
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .about-wrap { grid-template-columns: 1fr; }
+            .tech-categories { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            .project-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
         @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem 1rem;
-            }
-
-            .tech-grid {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-                gap: 0.75rem;
-            }
-
-            .social-links {
-                gap: 0.75rem;
-            }
-
-            .typing-animation {
-                white-space: normal;
-                border-right: none;
-                animation: fadeInUp 0.8s ease-out forwards;
-            }
+            .nav-links { display: none; }
+            .hero { padding: 7rem 1.25rem 3.5rem; }
+            nav { width: calc(100% - 2rem); top: 1rem; }
+            section { padding: 4rem 0; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat-num { font-size: 1.6rem; }
+            .huge-title { font-size: clamp(2rem, 9vw, 3.5rem); }
+            .section-title { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+            .glass-card { padding: 1.75rem; }
+            .social-grid { gap: 0.75rem; }
+            .social-btn { padding: 0.75rem 1.25rem; font-size: 0.875rem; }
         }
-
         @media (max-width: 480px) {
-            .intro, .project-category {
-                padding: 1.25rem;
-            }
-
-            .project-grid {
-                gap: 1rem;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--orange-primary);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--navy-primary);
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn { width: 100%; display: flex; justify-content: center; }
+            .btn-register { display: none; }
+            .hero-stats { gap: 1.25rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .tech-categories { grid-template-columns: 1fr; }
+            .social-grid { flex-direction: column; align-items: stretch; }
+            .social-btn { justify-content: center; }
+            .hero-title .line-name { font-size: clamp(1.1rem, 5vw, 1.5rem); }
         }
     </style>
+
 </head>
 <body>
-    <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+    <div class="grid-overlay"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-    <div class="container">
-        <header class="header">
-            <div class="typing-animation">AI & Blockchain Developer • Full-Stack Engineer • DeFi Protocol Builder</div>
-            <div class="greeting">Hey there! I'm</div>
-            <h1 class="name">Ifiezibe Justin Samuel</h1>
-            <div class="scroll-indicator">
-                <span>Scroll Down</span>
-                <div class="scroll-arrow"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            IJS
+        </a>
+        <div class="nav-center-pill">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#stack">Stack</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <div class="icon-btn" aria-label="Toggle Theme">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </div>
-        </header>
+            <a href="#contact" class="btn-register">Collaborate</a>
+        </div>
+    </nav>
 
-        <main>
-            <section class="intro section">
-                <p>I'm a passionate developer specializing in <strong>AI/ML</strong>, <strong>blockchain technology</strong>, <strong>quantitative finance</strong>, and <strong>web development</strong>. I build innovative tools that bridge traditional finance, cryptocurrency markets, and cutting-edge AI applications.</p>
-                
-                <p>My work focuses on creating practical, real-world solutions that solve complex problems in <strong>fintech</strong>, <strong>DeFi</strong>, and <strong>automated trading systems</strong>.</p>
 
-                <div class="currently-working">
-                    <h3>🔭 Currently Working On</h3>
-                    <ul>
-                        <li><strong>Voice-Controlled LLM App</strong> and advanced AI trading systems</li>
-                        <li>Quantitative finance models (ARIMA, GARCH) and advanced ML architectures</li>
-                        <li>Automated trading systems and cross-chain DeFi protocols</li>
-                        <li>Tools that democratize access to financial data and AI-powered insights</li>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+
+            <!-- Available badge -->
+            <div class="hero-badge-wrap anim d1">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Available for Work &nbsp;&middot;&nbsp; Full-Stack &amp; AI
+                </div>
+            </div>
+
+            <!-- Main heading -->
+            <h1 class="hero-title anim d2">
+                <span class="line-name">Ifiezibe Justin Samuel</span>
+                <span class="line-role">Engineering the<br><span class="gradient-text">Future of Tech.</span></span>
+            </h1>
+
+            <!-- Typing role line -->
+            <div class="hero-typing-wrap anim d3">
+                <span class="hero-typing-prefix">&gt;_</span>
+                <span id="typingText"></span><span class="typing-cursor"></span>
+            </div>
+
+            <!-- One-liner description -->
+            <p class="hero-desc anim d3">
+                Production-grade AI, DeFi protocols, and enterprise systems —
+                built where traditional finance meets decentralized infrastructure.
+            </p>
+
+            <!-- Quick stats -->
+            <div class="hero-stats anim d3">
+                <div class="hero-stat">
+                    <span class="hero-stat-num">4+</span>
+                    <span class="hero-stat-label">Years Shipping</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">30+</span>
+                    <span class="hero-stat-label">Projects Built</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">15+</span>
+                    <span class="hero-stat-label">Domains</span>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="hero-actions anim d4">
+                <a href="https://github.com/thetruesammyjay" class="btn btn-emerald" target="_blank">
+                    Explore Code &rarr;
+                </a>
+                <a href="mailto:thetruesammyjay@gmail.com" class="btn btn-outline">
+                    Schedule a Call
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+    
+    <!-- About -->
+    <section id="about">
+        <div class="container center-section">
+            <div style="text-align: left; width: 100%; margin-bottom: 3.5rem;">
+                <div class="section-tag scroll-animate">About</div>
+                <h2 class="huge-title scroll-animate" style="margin-bottom: 1.25rem;">
+                    The Engineer<br><span class="gradient-text">Behind the Stack.</span>
+                </h2>
+                <p class="section-desc scroll-animate" style="margin-bottom: 0; max-width: 560px;">
+                    4 years shipping production-grade AI, DeFi protocols, and enterprise systems — built to last, not just to launch.
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="about-wrap">
+                <div class="glass-card scroll-animate">
+                    <div class="about-text">
+                        <p>I'm a software engineer with deep expertise in <strong>artificial intelligence</strong>, <strong>blockchain infrastructure</strong>, <strong>quantitative finance</strong>, and <strong>full-stack web development</strong>.</p>
+                        <p>I architect production-grade systems that bridge traditional finance with decentralized protocols, and build AI-powered tools that solve real-world problems in <strong>fintech</strong>, <strong>DeFi</strong>, <strong>IoT</strong>, and enterprise software.</p>
+                        <p>My quantitative research covers <strong>Black-Scholes options pricing</strong>, <strong>ARIMA forecasting</strong>, <strong>GARCH volatility modeling</strong>, and <strong>Portfolio VaR analysis</strong>, applied in live trading systems and research contexts.</p>
+                        <p>My web engineering work spans production backend systems built in Python, TypeScript, and PHP. I have delivered enterprise e-commerce infrastructure and tax-tech SaaS products designed specifically for the Nigerian market.</p>
+                    </div>
+                </div>
+                <div class="building-card scroll-animate">
+                    <h3> Currently Shipping</h3>
+                    <ul class="building-list">
+                        <li><strong>ZibaXeer:</strong> Decentralized copy-trading vault protocol.</li>
+                        <li><strong>Bridle:</strong> Multi-agent autonomous wallet platform on Solana.</li>
+                        <li><strong>StudyMind AI:</strong> AI-powered learning platform with custom LLM.</li>
+                        <li><strong>AGM Store Builder:</strong> Enterprise e-commerce infrastructure.</li>
                     </ul>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <section class="tech-stack section">
-                <h2>🛠️ Tech Stack</h2>
-                <div class="tech-grid">
-                    <div class="tech-item">Python</div>
-                    <div class="tech-item">JavaScript</div>
-                    <div class="tech-item">TypeScript</div>
-                    <div class="tech-item">PHP</div>
-                    <div class="tech-item">React</div>
-                    <div class="tech-item">Node.js</div>
-                    <div class="tech-item">FastAPI</div>
-                    <div class="tech-item">Rust</div>
-                    <div class="tech-item">TensorFlow</div>
-                    <div class="tech-item">Solana</div>
-                    <div class="tech-item">Web3.js</div>
-                    <div class="tech-item">Docker</div>
+
+    <div class="divider"></div>
+
+    <!-- Tech Stack -->
+    <section id="stack">
+        <div class="container">
+            <div class="section-tag">Skills</div>
+            <h2 class="section-title">Tech Stack</h2>
+            <p class="section-desc">Languages, frameworks, and tools I use to build production systems across AI, blockchain, finance, and the web.</p>
+            <div class="tech-categories scroll-animate">
+                <div class="tech-category-card">
+                    <div class="tech-category-title"> Languages & Frameworks</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">TypeScript</span>
+                        <span class="tech-pill">PHP</span>
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">Rust</span>
+                        <span class="tech-pill">React</span>
+                        <span class="tech-pill">Node.js</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">Flask</span>
+                        <span class="tech-pill">HTML5</span>
+                    </div>
                 </div>
-            </section>
+                <div class="tech-category-card">
+                    <div class="tech-category-title"> AI / ML & Data Science</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">TensorFlow</span>
+                        <span class="tech-pill">scikit-learn</span>
+                        <span class="tech-pill">Pandas</span>
+                        <span class="tech-pill">NumPy</span>
+                        <span class="tech-pill">LLM Integration</span>
+                        <span class="tech-pill">RAG</span>
+                        <span class="tech-pill">SVM</span>
+                        <span class="tech-pill">Gemini API</span>
+                    </div>
+                </div>
+                <div class="tech-category-card">
+                    <div class="tech-category-title"> Quantitative Finance</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Black-Scholes</span>
+                        <span class="tech-pill">ARIMA</span>
+                        <span class="tech-pill">GARCH</span>
+                        <span class="tech-pill">Portfolio VaR</span>
+                        <span class="tech-pill">Options Pricing</span>
+                        <span class="tech-pill">Time Series</span>
+                    </div>
+                </div>
+                <div class="tech-category-card">
+                    <div class="tech-category-title"> Blockchain & Web3</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Solana</span>
+                        <span class="tech-pill">Ethereum</span>
+                        <span class="tech-pill">Avalanche</span>
+                        <span class="tech-pill">Web3.js</span>
+                        <span class="tech-pill">LayerZero</span>
+                        <span class="tech-pill">DeFi</span>
+                        <span class="tech-pill">Smart Contracts</span>
+                    </div>
+                </div>
+                <div class="tech-category-card">
+                    <div class="tech-category-title"> Infrastructure & DevOps</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Docker</span>
+                        <span class="tech-pill">Kubernetes</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">Git</span>
+                        <span class="tech-pill">Vercel</span>
+                        <span class="tech-pill">Maven</span>
+                        <span class="tech-pill">Linux</span>
+                    </div>
+                </div>
+                <div class="tech-category-card">
+                    <div class="tech-category-title"> Embedded & IoT</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Embedded C</span>
+                        <span class="tech-pill">Proteus</span>
+                        <span class="tech-pill">Sensors</span>
+                        <span class="tech-pill">IoT Protocols</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="social-links section">
-                <a href="https://github.com/thetruesammyjay" class="social-link">
-                    <span>GitHub</span>
-                </a>
-                <a href="mailto:thetruesammyjay@gmail.com" class="social-link">
-                    <span>Email</span>
-                </a>
-                <a href="https://x.com/thatbwoysammyj" class="social-link">
-                    <span>Twitter</span>
-                </a>
-                <a href="https://t.me/sammyjayisthename" class="social-link">
-                    <span>Telegram</span>
-                </a>
+    <div class="divider"></div>
+
+    
+    <!-- Projects Banner -->
+    <section class="center-section" style="padding-bottom: 2rem;">
+        <div class="container">
+            <div class="section-tag" style="background:none; border:none; letter-spacing: 0.2em;">PROJECT SHOWCASE</div>
+            <h2 class="huge-title scroll-animate">Architectures <br><span class="huge-red-text">Dropping Now.</span></h2>
+            <p class="section-desc scroll-animate" style="margin: 1.5rem auto 0;">The full lineup of intelligent bots, blockchain protocols, and AI trading systems.</p>
+        </div>
+    </section>
+    
+    <!-- Projects -->
+    <section id="projects" class="projects-bg" style="padding-top: 4rem;">
+        <div class="container">
+
+
+            <!-- AI & ML -->
+            <div class="project-section-block scroll-animate">
+                <div class="category-header">
+                    <span class="category-icon"></span>
+                    <span class="category-title">AI & Machine Learning</span>
+                    <span class="category-count">9</span>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">StudyMind AI</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">AI-powered study platform with FastAPI backend and LLM integration for personalized learning experiences.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python  FastAPI</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/studymind-ai" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Voice-Controlled LLM App</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Voice-controlled AI application with local LLM integration and natural language processing capabilities.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/voice-controlled-llm-app" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Financial Analyst (DeepSeek)</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Financial analysis and market research tool powered by DeepSeek LLM for deep financial insights.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/financial-analyst-deepseek" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Video RAG (Gemini)</span>
+                        </div>
+                        <p class="project-desc">Video retrieval-augmented generation using Google Gemini for intelligent video question-answering.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/video-rag-gemini" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Deep Translate Engine</span>
+                        </div>
+                        <p class="project-desc">Real-time speech recognition and multi-language subtitle generation system.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/Deep-Translate-Engine" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">FruitSense AI</span>
+                        </div>
+                        <p class="project-desc">AI-based fruit quality detection system for agricultural quality assurance and grading.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/FruitSense-AI" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Speech-to-Text Nigerian</span>
+                        </div>
+                        <p class="project-desc">Speech recognition optimized for Nigerian accents and local language variants.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/speech-to-text-nigerian" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">PDF Audio Converter</span>
+                        </div>
+                        <p class="project-desc">Convert PDF documents to audio files with natural voice synthesis for accessibility.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/pdf-audo" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Crypto Prediction App</span>
+                        </div>
+                        <p class="project-desc">ML models for cryptocurrency price prediction and comprehensive market analysis.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python  HTML</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/crypto-prediction-app-mvp" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <section class="projects section">
-                <h2>🌟 Featured Projects</h2>
-                
-                <div class="project-category">
-                    <h3>🤖 AI & Machine Learning</h3>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Voice-Controlled LLM App
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Advanced voice-controlled AI application with local LLM integration and natural language processing capabilities.</p>
+            <!-- Quantitative Finance -->
+            <div class="project-section-block scroll-animate">
+                <div class="category-header">
+                    <span class="category-icon"></span>
+                    <span class="category-title">Quantitative Finance</span>
+                    <span class="category-count">4</span>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Black-Scholes Pricer</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Options pricing engine using the Black-Scholes model with full Greeks calculation and visualization.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/voice-controlled-llm-app" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/black_scholes_pricer" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Speech-to-Text App Demo
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Browser-based speech-to-text with multi-language support and real-time transcription capabilities.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">ARIMA Forecasting</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Time series analysis and price forecasting using ARIMA models for financial market data.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/stt-app-demo" class="project-link">View Project</a>
-                                <a href="https://stt-app-demo.vercel.app/" class="demo-badge">Live Demo</a>
+                                <a href="https://github.com/thetruesammyjay/arima_forecasting" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Aloud Read App
-                            </h4>
-                            <p class="project-description">Text-to-speech application for accessibility with natural voice synthesis and multi-language support.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">GARCH Volatility Model</span>
+                        </div>
+                        <p class="project-desc">Advanced volatility modeling for financial markets using GARCH statistical analysis.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/aloud-read-app" class="project-link">View Project</a>
-                                <a href="https://aloud-read-app.netlify.app/" class="demo-badge">Live Demo</a>
+                                <a href="https://github.com/thetruesammyjay/garch_volatility_model" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">Crypto Prediction App MVP</h4>
-                            <p class="project-description">Machine learning models for cryptocurrency price prediction and comprehensive market analysis.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/crypto-prediction-app-mvp" class="project-link">View Project</a>
-                            </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Portfolio VaR</span>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">AI Trading Assistant</h4>
-                            <p class="project-description">Advanced AI-powered trading assistant with market analysis capabilities and automated decision-making.</p>
+                        <p class="project-desc">Portfolio Value-at-Risk calculation engine for risk assessment and portfolio management.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/ai-trading-assistant" class="project-link">View Project</a>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">GARCH Volatility Model</h4>
-                            <p class="project-description">Advanced volatility modeling for financial markets using GARCH models and statistical analysis.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/garch_volatility_model" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/portfolio_var" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="project-category section">
-                    <h3>🔗 Blockchain & DeFi</h3>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                MultiChain Track
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Cross-chain transaction tracking and analysis tool for comprehensive blockchain monitoring.</p>
+            <!-- Blockchain & DeFi -->
+            <div class="project-section-block scroll-animate">
+                <div class="category-header">
+                    <span class="category-icon"></span>
+                    <span class="category-title">Blockchain & DeFi</span>
+                    <span class="category-count">11</span>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Avalanche AI Trading Assistant</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Conversational AI for Avalanche C-Chain DeFi analysis and on-chain trade execution.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/multichain-track" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/avalanche-ai-trading-assistant" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                ChainSight
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Advanced blockchain analytics and monitoring platform with real-time insights and data visualization.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">DEX Trending Bot</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Automated DexScreener analysis with social media integration and trend identification.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/ChainSight" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/dex-trending-bot" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                DEX Trending Bot
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Automated DexScreener analysis with social media integration and trend identification.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">ChainSight</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Blockchain analytics and monitoring platform with real-time insights and data visualization.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">JavaScript</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/dex-trending-bot" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/ChainSight" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                LayerZero Solana Auth
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Cross-chain authentication using LayerZero protocol for seamless multi-chain interactions.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">MultiChain Track</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Cross-chain transaction tracking and analysis tool for comprehensive blockchain monitoring.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">JavaScript</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/layerzero-solana-auth" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/multichain-track" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">Market Maker Bot</h4>
-                            <p class="project-description">Automated market making strategies for DeFi protocols with advanced liquidity management.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">LayerZero Solana Auth</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Cross-chain authentication using LayerZero protocol for seamless multi-chain interactions.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Rust</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/market-maker-bot" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/layerzero-solana-auth" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">Solana Program Inspector</h4>
-                            <p class="project-description">Rust-based tool for Solana smart contract analysis and security auditing.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Whale Watcher Bot</span>
+                        </div>
+                        <p class="project-desc">Whale transaction monitoring and instant alerts for major on-chain movements.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/solana-program-inspector" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/whale-watcher-bot" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Solana Program Inspector</span>
+                        </div>
+                        <p class="project-desc">Rust-based tool for Solana smart contract analysis and on-chain security auditing.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Rust</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/solana-program-inspector" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Market Maker Bot</span>
+                        </div>
+                        <p class="project-desc">Automated market making strategies for DeFi protocols with advanced liquidity management.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/market-maker-bot" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Gab Crypt</span>
+                        </div>
+                        <p class="project-desc">Cryptographic utility tooling for encryption, hashing, and secure key management.</p>
+                        <div class="project-footer">
+                            <span class="project-stack"></span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/gab-crypt" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">ZibaXeer</span>
+                            <span class="project-star">&#9733;</span>
+                        </div>
+                        <p class="project-desc">Decentralized copy-trading vault protocol on HyperPaxeer (EVM). Top Colosseum traders create strategy vaults that funded wallets mirror non-custodially — with on-chain analytics, profit-only revenue sharing, and the Argus Risk Engine.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Solidity &middot; TypeScript &middot; Next.js</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/ZibaXeer" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Bridle</span>
+                            <span class="project-star">&#9733;</span>
+                        </div>
+                        <p class="project-desc">Multi-agent DeFi autonomous wallet platform on Solana. AI agents independently manage encrypted wallets, make BUY/SELL/HOLD decisions via Gemini LLM against live Jupiter price feeds, and execute trades — all observable through a real-time WebSocket dashboard.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">TypeScript &middot; Node.js &middot; Solana</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/bridle" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="project-category section">
-                    <h3>⚙️ Rust Projects</h3>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Pinocchio Auction
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">High-performance blockchain auction system built with Rust for secure and efficient trading.</p>
+            <!-- Full-Stack Web Dev -->
+            <div class="project-section-block scroll-animate">
+                <div class="category-header">
+                    <span class="category-icon"></span>
+                    <span class="category-title">Full-Stack Web Development</span>
+                    <span class="category-count">7</span>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">AGM Store Builder</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Full-stack enterprise e-commerce platform with backend API, frontend UI, and admin dashboard.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python  TypeScript</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/pinocchio_auction" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/agm-store-builder" class="link-btn link-github" target="_blank">Code</a>
+                                <a href="https://agmshops.com" class="link-btn link-live" target="_blank">Live</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Smart Contract Security
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Comprehensive security toolkit for smart contract auditing and vulnerability detection in Rust.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">SabitaX Backend</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Tax-tech SaaS backend built for Nigerian compliance, automated tax calculations, and reporting.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/smart-contract-security" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/sabitax-backend" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">Task Scheduler CLI</h4>
-                            <p class="project-description">Efficient command-line task scheduler built with Rust for automated workflow management.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Nigerian Tax Tech SaaS</span>
+                        </div>
+                        <p class="project-desc">Nigerian taxation compliance platform with automated filing and financial reporting.</p>
+                        <div class="project-footer">
+                            <span class="project-stack"></span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/task-scheduler-cli" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/nigerian-tax-tech-saas" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">StockMaster</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Inventory management system with real-time tracking, automated alerts, and analytics.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">PHP  MySQL</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/StockMaster" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Buy9ja</span>
+                        </div>
+                        <p class="project-desc">Nigerian e-commerce marketplace platform connecting local buyers and sellers.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">PHP</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/buy9ja" class="link-btn link-github" target="_blank">Code</a>
+                                <a href="https://buy9ja.app" class="link-btn link-live" target="_blank">Live</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Invoice Generator</span>
+                        </div>
+                        <p class="project-desc">Web-based invoice generation tool for freelancers and small businesses.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">JavaScript</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/invoice-generator" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">QR Code Generator</span>
+                        </div>
+                        <p class="project-desc">Privacy-focused web-based QR code generator with a modern, minimal UI.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">HTML  JS</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/qr-code-generator" class="link-btn link-github" target="_blank">Code</a>
+                                <a href="https://qr-code-generator-navy-seven.vercel.app/" class="link-btn link-live" target="_blank">Live</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="project-category section">
-                    <h3>🤖 Telegram Bots</h3>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                AttahX Payment Bot
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Telegram payment processing bot with secure transaction handling and automated payment workflows.</p>
+            <!-- IoT & Embedded Systems -->
+            <div class="project-section-block scroll-animate">
+                <div class="category-header">
+                    <span class="category-icon"></span>
+                    <span class="category-title">IoT & Embedded Systems</span>
+                    <span class="category-count">3</span>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">IoT Smart Prepaid Energy Meter</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Smart prepaid energy metering system with Proteus simulation and IoT connectivity for remote management.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Embedded C  Proteus</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/AttahX-bot" class="project-link">View Project</a>
-                                <a href="https://t.me/AttahXPaymentBot" class="demo-badge">Live Demo</a>
+                                <a href="https://github.com/thetruesammyjay/Iot-Based-Smart-Prepaid-Energy-Meter-Proteus" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                PKAN Twitter Bot
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Automated social media integration bot for Twitter monitoring and engagement tracking.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">IoT Crop Disease Detection</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">IoT-based real-time disease detection system for agricultural monitoring and early intervention.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Embedded C</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/pkan-twitter-bot" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/IoT-System-for-Disease-Detection-in-Crops" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                AGM Crypto Wallet Tracker
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Real-time cryptocurrency wallet tracking bot with instant transaction notifications and balance monitoring.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/AGMCryptoWalletTracker" class="project-link">View Project</a>
-                                <a href="https://t.me/AGMCryptoWalletTrackerBot" class="demo-badge">Live Demo</a>
-                            </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Oil Pipeline Attack Model</span>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">AGM TechPluse Bot</h4>
-                            <p class="project-description">Multi-purpose Telegram bot for tech community management and automated assistance.</p>
+                        <p class="project-desc">Security analysis model for oil pipeline infrastructure threat detection and assessment.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/AGMTechPluseBot" class="project-link">View Project</a>
-                                <a href="https://t.me/AGMTechPluseBot" class="demo-badge">Live Demo</a>
+                                <a href="https://github.com/thetruesammyjay/oil-pipeline-attack-model" class="link-btn link-github" target="_blank">Code</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="project-category section">
-                    <h3>📚 Educational Projects</h3>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Beginner's Guide: HTML & CSS
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Comprehensive tutorial series for learning HTML and CSS with progressive case studies and practical examples.</p>
+            <!-- Developer Tools & Bots -->
+            <div class="project-section-block scroll-animate">
+                <div class="category-header">
+                    <span class="category-icon"></span>
+                    <span class="category-title">Developer Tools & Bots</span>
+                    <span class="category-count">7</span>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">STT App Demo</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Browser-based speech-to-text with multi-language support and real-time transcription.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">HTML  JS</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/Beginner-s-Guide-HTML-and-CSS-with-Progressive-Case-Study" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/stt-app-demo" class="link-btn link-github" target="_blank">Code</a>
+                                <a href="https://stt-app-demo.vercel.app/" class="link-btn link-live" target="_blank">Live</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Intermediate HTML & CSS
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Advanced HTML and CSS tutorial series with real-world projects and progressive skill development.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Voice Transcriber SVM</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Real-time voice transcription tool with support vector machine integration.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">JavaScript</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/Intermediate-HTML-and-CSS-with-Progressive-Case-Study" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/voice-transcriber-svm" class="link-btn link-github" target="_blank">Code</a>
+                                <a href="https://voice-transcriber-svm.vercel.app/" class="link-btn link-live" target="_blank">Live</a>
                             </div>
                         </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">JavaScript Scroll Mechanism</h4>
-                            <p class="project-description">Interactive tutorial demonstrating advanced JavaScript scroll techniques and animations.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">SocialPro Bot NG</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">AI-powered social media co-pilot for content creation and engagement automation.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
                             <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/javascript-scroll-mechanism" class="project-link">View Project</a>
+                                <a href="https://github.com/thetruesammyjay/SocialPro-Bot-Ng" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Discord Bot</span>
+                        </div>
+                        <p class="project-desc">Feature-rich Discord bot for community management and automated server moderation.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">JavaScript</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/discord-bot" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">BookingBot NG</span>
+                        </div>
+                        <p class="project-desc">Automated booking and reservation assistant designed for Nigerian businesses.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">Python</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/bookingbot-ng" class="link-btn link-github" target="_blank">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Pass Generator</span>
+                            <span class="project-star"></span>
+                        </div>
+                        <p class="project-desc">Secure password generator with customizable complexity, entropy display, and strength options.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">TypeScript</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/pass-generator" class="link-btn link-github" target="_blank">Code</a>
+                                <a href="https://pass-generator-beryl.vercel.app/" class="link-btn link-live" target="_blank">Live</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-name">Text-to-Speech App</span>
+                        </div>
+                        <p class="project-desc">Browser-based text-to-speech converter with natural voice synthesis and multi-language support.</p>
+                        <div class="project-footer">
+                            <span class="project-stack">HTML  JS</span>
+                            <div class="project-links">
+                                <a href="https://github.com/thetruesammyjay/text-to-speech-app" class="link-btn link-github" target="_blank">Code</a>
+                                <a href="https://text-to-speech-app-dusky.vercel.app/" class="link-btn link-live" target="_blank">Live</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="project-category section">
-                    <h3>🇳🇬 Nigerian Market Integration</h3>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                AGM Bar
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Modern bar management system tailored for the Nigerian hospitality industry with inventory and sales tracking.</p>
-                            <div class="project-links">
-                                <a href="https://agmtechpluse.net/project/agm-bar/index.php" class="demo-badge">Live Demo</a>
-                            </div>
-                        </div>
+            
+        </div>
+    </section>
 
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                BookingBotPro
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Automated booking and reservation system designed for Nigerian businesses with SMS integration.</p>
-                            <div class="project-links">
-                                <a href="https://agmtechpluse.net/project/BookingBotPro/index.php" class="demo-badge">Live Demo</a>
-                            </div>
-                        </div>
+    <div class="divider"></div>
 
-                        <div class="project-card">
-                            <h4 class="project-title">QR Generator</h4>
-                            <p class="project-description">Simple and efficient QR code generator for business cards, payment links, and digital marketing.</p>
-                            <div class="project-links">
-                                <a href="https://agmtechpluse.net/project/QR-generator/index.html" class="demo-badge">Live Demo</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-tag">Contact</div>
+            <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+            <p class="section-desc">
+                Open to collaborating on AI systems, blockchain infrastructure, quantitative finance, enterprise software, or IoT solutions. If you're building something production-grade, let's talk.
+            </p>
+            <div class="social-grid scroll-animate">
+                <a href="https://github.com/thetruesammyjay" class="social-btn social-github" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234C5.662 21.303 4.967 19.161 4.967 19.161c-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.51 11.51 0 0 1 3.003-.404c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+                <a href="https://x.com/thatbwoysammyj" class="social-btn social-twitter" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Twitter
+                </a>
+                <a href="https://t.me/sammyjayisthename" class="social-btn social-telegram" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </a>
+                <a href="mailto:thetruesammyjay@gmail.com" class="social-btn social-email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    Email Me
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <div class="project-category section">
-                    <h3>🛠️ Productivity & Utility Tools</h3>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Voice Transcriber SVM
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Real-time voice transcription tool with support vector machine integration for accurate speech recognition.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/voice-transcriber-svm" class="project-link">View Project</a>
-                                <a href="https://voice-transcriber-svm.vercel.app/" class="demo-badge">Live Demo</a>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Text-to-Speech App
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Browser-based text-to-speech converter with natural voice synthesis and multi-language support.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/text-to-speech-app" class="project-link">View Project</a>
-                                <a href="https://text-to-speech-app-dusky.vercel.app/" class="demo-badge">Live Demo</a>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                Password Generator
-                                <span class="project-star">⭐</span>
-                            </h4>
-                            <p class="project-description">Secure password generator with customizable complexity and strength options for enhanced security.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/pass-generator" class="project-link">View Project</a>
-                                <a href="https://pass-generator-beryl.vercel.app/" class="demo-badge">Live Demo</a>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">
-                                QR Code Generator
-                            </h4>
-                            <p class="project-description">A simple, efficient, and privacy-focused web-based QR Code Generator with modern UI.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/qr-code-generator" class="project-link">View Project</a>
-                                <a href="https://qr-code-generator-navy-seven.vercel.app/" class="demo-badge">Live Demo</a>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">Finance Management App</h4>
-                            <p class="project-description">Personal finance tracking and management system with comprehensive analytics and reporting.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/finance-management-app" class="project-link">View Project</a>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <h4 class="project-title">Stock Master</h4>
-                            <p class="project-description">A powerful, user-friendly inventory management system with real-time tracking and automated alerts.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/thetruesammyjay/StockMaster" class="project-link">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer section">
-            <div class="footer-quote">"Building the future of DeFi, AI, and Web Development, one commit at a time"</div>
-            <div class="footer-copyright">© 2025 Ifiezibe Justin Samuel. Innovating at the intersection of AI and blockchain.</div>
-        </footer>
-    </div>
+    <footer>
+        <div class="container">
+            <p class="quote">"Building production-grade AI, DeFi, and enterprise systems — one commit at a time."</p>
+            <p>&copy; 2026 Ifiezibe Justin Samuel &mdash; AI, Blockchain &amp; Quantitative Finance Engineer</p>
+        </div>
+    </footer>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Scroll progress bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            scrollProgress.style.width = (window.scrollY / h * 100) + '%';
+        }, { passive: true });
 
+        // Scroll-in animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
 
-        // Observe all sections
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
+        // Typing animation
+        const phrases = [
+            'AI & Blockchain Developer',
+            'Full-Stack Engineer',
+            'DeFi Protocol Builder',
+            'Quantitative Analyst',
+            'PHP Web Developer'
+        ];
+        let pi = 0, ci = 0, deleting = false;
+        const el = document.getElementById('typingText');
 
-        // Observe header separately
-        const header = document.querySelector('.header');
-        if (header) {
-            observer.observe(header);
-        }
-
-        // Tech items hover effect with ripple
-        document.querySelectorAll('.tech-item').forEach(item => {
-            item.addEventListener('mouseenter', function(e) {
-                this.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            });
-        });
-
-        // Project cards stagger animation
-        const projectCategories = document.querySelectorAll('.project-category');
-        projectCategories.forEach(category => {
-            const cards = category.querySelectorAll('.project-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Parallax effect for floating shapes
-        let scrollY = 0;
-        const shapes = document.querySelectorAll('.shape');
-        
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY;
-            
-            shapes.forEach((shape, index) => {
-                const speed = 0.5 + (index * 0.2);
-                const yPos = -(scrollY * speed);
-                shape.style.transform = `translateY(${yPos}px) rotate(${scrollY * 0.1}deg)`;
-            });
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            setTimeout(() => {
-                document.body.style.transition = 'opacity 0.5s ease';
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Tech stack items random animation delay
-        document.querySelectorAll('.tech-item').forEach((item, index) => {
-            item.style.animationDelay = `${Math.random() * 0.5}s`;
-        });
-
-        // Add click ripple effect to buttons and links
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const ripple = document.createElement('span');
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-
-            ripple.style.width = ripple.style.height = `${diameter}px`;
-            ripple.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-            ripple.style.top = `${event.clientY - button.offsetTop - radius}px`;
-            ripple.style.position = 'absolute';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 162, 0, 0.3)';
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'ripple 0.6s ease-out';
-            ripple.style.pointerEvents = 'none';
-
-            const rippleStyle = document.createElement('style');
-            rippleStyle.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(4);
-                        opacity: 0;
-                    }
-                }
-            `;
-            if (!document.querySelector('style[data-ripple]')) {
-                rippleStyle.setAttribute('data-ripple', '');
-                document.head.appendChild(rippleStyle);
+        function type() {
+            const current = phrases[pi];
+            if (!deleting) {
+                el.textContent = current.slice(0, ++ci);
+                if (ci === current.length) { deleting = true; setTimeout(type, 2200); return; }
+            } else {
+                el.textContent = current.slice(0, --ci);
+                if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
             }
-
-            button.style.position = 'relative';
-            button.style.overflow = 'hidden';
-            
-            const existingRipple = button.querySelector('span');
-            if (existingRipple) {
-                existingRipple.remove();
-            }
-
-            button.appendChild(ripple);
-
-            setTimeout(() => ripple.remove(), 600);
+            setTimeout(type, deleting ? 45 : 85);
         }
-
-        document.querySelectorAll('.social-link, .project-link, .demo-badge').forEach(button => {
-            button.addEventListener('click', createRipple);
-        });
-
-        // Counter animation for stats (if you want to add stats later)
-        function animateValue(element, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                element.textContent = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // Scroll progress indicator
-        const scrollProgress = document.createElement('div');
-        scrollProgress.style.position = 'fixed';
-        scrollProgress.style.top = '0';
-        scrollProgress.style.left = '0';
-        scrollProgress.style.width = '0%';
-        scrollProgress.style.height = '3px';
-        scrollProgress.style.background = 'linear-gradient(90deg, var(--navy-primary), var(--orange-primary))';
-        scrollProgress.style.zIndex = '9999';
-        scrollProgress.style.transition = 'width 0.1s ease';
-        document.body.appendChild(scrollProgress);
-
-        window.addEventListener('scroll', () => {
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            scrollProgress.style.width = scrolled + '%';
-        });
-
-        // Add mouse trail effect
-        const coords = { x: 0, y: 0 };
-        const circles = [];
-        const colors = ['rgba(255, 162, 0, 0.1)', 'rgba(1, 1, 92, 0.1)'];
-
-        for (let i = 0; i < 20; i++) {
-            const circle = document.createElement('div');
-            circle.style.position = 'fixed';
-            circle.style.width = '10px';
-            circle.style.height = '10px';
-            circle.style.borderRadius = '50%';
-            circle.style.pointerEvents = 'none';
-            circle.style.zIndex = '9998';
-            circle.style.transition = 'all 0.3s ease';
-            circles.push(circle);
-            document.body.appendChild(circle);
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            coords.x = e.clientX;
-            coords.y = e.clientY;
-        });
-
-        function animateCircles() {
-            let x = coords.x;
-            let y = coords.y;
-
-            circles.forEach((circle, index) => {
-                circle.style.left = x - 5 + 'px';
-                circle.style.top = y - 5 + 'px';
-                circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
-                circle.style.background = colors[index % colors.length];
-
-                const nextCircle = circles[index + 1] || circles[0];
-                x += (parseFloat(nextCircle.style.left) - x) * 0.3;
-                y += (parseFloat(nextCircle.style.top) - y) * 0.3;
-            });
-
-            requestAnimationFrame(animateCircles);
-        }
-
-        animateCircles();
+        type();
     </script>
 </body>
 </html>
+
