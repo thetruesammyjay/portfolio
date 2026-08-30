@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <title>Sammy Jay monogram</title>
+  <rect x="32" y="32" width="960" height="960" rx="196" fill="#FFFFFF"/>
+  <path d="M542 246H326c-61 0-106 45-106 105v66c0 60 45 105 106 105h114c59 0 102 43 102 101v35c0 68-50 116-118 116H220"
+        fill="none" stroke="#0B0D10" stroke-width="76" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M736 246v390c0 92-60 138-142 138h-62"
+        fill="none" stroke="#0B0D10" stroke-width="76" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M792 244l70-70" fill="none" stroke="#0B0D10" stroke-width="46" stroke-linecap="square"/>
+  <rect x="806" y="739" width="58" height="58" rx="8" fill="#0B0D10"/>
+</svg>

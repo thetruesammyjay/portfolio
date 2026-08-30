@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2200 620">
+  <title>Sammy Jay primary wordmark</title>
+  <rect width="2200" height="620" rx="42" fill="#0B0D10"/>
+  <g transform="translate(46,54) scale(.5)">
+  <title>Sammy Jay monogram</title>
+  <rect x="32" y="32" width="960" height="960" rx="196" fill="#0B0D10"/>
+  <path d="M542 246H326c-61 0-106 45-106 105v66c0 60 45 105 106 105h114c59 0 102 43 102 101v35c0 68-50 116-118 116H220"
+        fill="none" stroke="#F7F4EC" stroke-width="76" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M736 246v390c0 92-60 138-142 138h-62"
+        fill="none" stroke="#25E4B3" stroke-width="76" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M792 244l70-70" fill="none" stroke="#F04438" stroke-width="46" stroke-linecap="square"/>
+  <rect x="806" y="739" width="58" height="58" rx="8" fill="#1877F2"/>
+</g>
+  <text x="620" y="273" font-family="DejaVu Sans, Arial, sans-serif" font-size="210" font-weight="700" fill="#F7F4EC" letter-spacing="-7">SAMMY JAY</text>
+  <rect x="630" y="326" width="115" height="14" fill="#F04438"/>
+  <rect x="757" y="326" width="115" height="14" fill="#25E4B3"/>
+  <text x="620" y="413" font-family="DejaVu Sans, Arial, sans-serif" font-size="64" font-weight="700" fill="#F7F4EC" letter-spacing="4">SOFTWARE SOLUTIONS &amp; CONSULTANCY</text>
+  <text x="620" y="494" font-family="DejaVu Sans Mono, monospace" font-size="42" fill="#25E4B3" letter-spacing="5">INTELLIGENCE, ENGINEERED.</text>
+</svg>
